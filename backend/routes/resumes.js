@@ -1,7 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import { GoogleGenAI } from "@google/genai";
-import Resume from "../models/Resume.js";
+import Resume from "../models/resume.js";
 import authenticateToken from "../middleware/auth.js";
 
 const router = express.Router();
