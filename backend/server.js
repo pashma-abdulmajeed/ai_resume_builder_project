@@ -17,7 +17,6 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
-app.options("*", cors(corsOptions)); // preflight requests ke liye
 app.use(express.json());
 
 app.use("/api/resumes", resumeRoutes);
