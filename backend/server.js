@@ -10,11 +10,15 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(cors({
-  origin: process.env.FRONTEND_URL || "http://localhost:5173",
-}));
+const corsOptions = {
+  origin: "https://ai-resume-builder-project-xclz.vercel.app",
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+};
 
-app.use(express.json({ limit: "20kb" }));
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions)); // preflight requests ke liye
+app.use(express.json());
 
 app.use("/api/resumes", resumeRoutes);
 
