@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import ResumeDashboard from "./resumeDashboard.jsx";
+import ResumeDashboard from "./resumeDashboard";
 import "./App.css";
 
 const API_URL =
