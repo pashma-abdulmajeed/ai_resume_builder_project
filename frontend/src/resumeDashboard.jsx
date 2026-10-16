@@ -3,8 +3,8 @@ import { generateResumePDF } from "./generateResumePDF";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
-fetch(`${API_URL}/api/auth/register`, {
-  // Keep your existing method, headers, and body here
+fetch(`/api/auth/register`, {
+  // method, headers, body...
 });
 
 const emptyResume = () => ({
