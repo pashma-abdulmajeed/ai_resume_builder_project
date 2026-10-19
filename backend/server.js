@@ -11,6 +11,7 @@ const PORT = process.env.PORT || 5000;
 
 const allowedOrigins = [
   "https://ai-resume-builder-project-xclz.vercel.app",
+  "https://airesumebuilderproject.vercel.app"
 ];
 
 app.use(
