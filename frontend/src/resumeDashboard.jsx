@@ -1,11 +1,7 @@
 import { useEffect, useState } from "react";
 import { generateResumePDF } from "./generateResumePDF";
 
-const API_URL = import.meta.env.VITE_API_URL;
-
-fetch(`/api/auth/register`, {
-  // method, headers, body...
-});
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
 const emptyResume = () => ({
   title: "My Resume",
