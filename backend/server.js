@@ -30,7 +30,12 @@ async function connectDB() {
   if (!process.env.MONGODB_URI) {
     throw new Error("MONGODB_URI must be configured in environment variables.");
   }
-  await mongoose.connect(process.env.MONGODB_URI);
+  
+  // Yahan bufferCommands: false add karna hai:
+  await mongoose.connect(process.env.MONGODB_URI, {
+    bufferCommands: false,
+  });
+
   isConnected = true;
   console.log("MongoDB connected successfully.");
 }
