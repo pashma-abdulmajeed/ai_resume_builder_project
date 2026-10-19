@@ -23,6 +23,29 @@ app.use(
 
 app.use(express.json());
 
+let isConnected = false;
+
+async function connectDB() {
+  if (isConnected) return;
+  if (!process.env.MONGODB_URI) {
+    throw new Error("MONGODB_URI must be configured in environment variables.");
+  }
+  await mongoose.connect(process.env.MONGODB_URI);
+  isConnected = true;
+  console.log("MongoDB connected successfully.");
+}
+
+// Har route se pehle DB connect karne ke liye middleware ya function use karein
+app.use(async (req, res, next) => {
+  try {
+    await connectDB();
+    next();
+  } catch (err) {
+    console.error("Database connection error:", err);
+    res.status(500).json({ success: false, message: "Database connection failed" });
+  }
+});
+
 app.use("/api/resumes", resumeRoutes);
 
 app.get("/", (req, res) => {
@@ -39,8 +62,7 @@ async function startServer() {
     throw new Error("MONGODB_URI and JWT_SECRET must be configured in .env");
   }
 
-  await mongoose.connect(process.env.MONGODB_URI);
-  console.log("MongoDB connected successfully.");
+  await connectDB();
 
   app.listen(PORT, () => {
     console.log(`Backend running at http://localhost:${PORT}`);
